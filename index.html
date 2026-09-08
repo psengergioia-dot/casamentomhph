@@ -679,16 +679,47 @@
       width: 280px;
       box-shadow: 0 8px 32px rgba(26,10,15,0.25);
       border-radius: 12px;
-      overflow: hidden;
+      overflow: visible;
       transition: opacity 0.3s, transform 0.3s;
     }
     .spotify-float iframe {
       display: block;
       width: 100%;
-      border: none;
+      border-radius: 12px;
     }
-    /* botão para minimizar */
+    /* botão fechar — canto superior esquerdo do player */
     .spotify-toggle {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      z-index: 92;
+      background: var(--wine);
+      border: none;
+      border-radius: 50%;
+      width: 24px; height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(150,48,90,0.35);
+      color: #fff;
+      font-size: 0.75rem;
+      line-height: 1;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .spotify-float.minimizado {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.8) translateY(20px);
+    }
+    .spotify-toggle.visivel {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    /* botão reabrir — aparece quando minimizado, fixo no canto */
+    .spotify-reopen {
       position: fixed;
       bottom: 1.5rem;
       right: 1.5rem;
@@ -705,12 +736,7 @@
       color: #fff;
       font-size: 1.1rem;
     }
-    .spotify-float.minimizado {
-      opacity: 0;
-      pointer-events: none;
-      transform: scale(0.8) translateY(20px);
-    }
-    .spotify-toggle.visivel { display: flex; }
+    .spotify-reopen.visivel { display: flex; }
 
 
 
@@ -1204,6 +1230,7 @@
 
   <!-- SPOTIFY FLUTUANTE -->
   <div class="spotify-float" id="spotify-float">
+    <button class="spotify-toggle" id="spotify-toggle" onclick="toggleSpotify()" title="Fechar">×</button>
     <iframe
       src="https://open.spotify.com/embed/track/4t7BIS6RHRwhzq0ORULp8g?utm_source=generator&theme=0&autoplay=1"
       height="80"
@@ -1212,7 +1239,7 @@
       loading="lazy">
     </iframe>
   </div>
-  <button class="spotify-toggle" id="spotify-toggle" onclick="toggleSpotify()" title="Nossa música">♪</button>
+  <button class="spotify-reopen" id="spotify-reopen" onclick="reabrirSpotify()" title="Nossa música">♪</button>
 
 
 
@@ -1688,16 +1715,17 @@
     }
 
     /* ── SPOTIFY FLUTUANTE ─────────────────────────── */
-    // Após 3s aparece o botão minimizar discretamente
     setTimeout(() => {
       document.getElementById('spotify-toggle').classList.add('visivel');
     }, 3000);
 
     function toggleSpotify() {
-      const float  = document.getElementById('spotify-float');
-      const toggle = document.getElementById('spotify-toggle');
-      const min = float.classList.toggle('minimizado');
-      toggle.textContent = min ? '♪' : '×';
+      document.getElementById('spotify-float').classList.add('minimizado');
+      document.getElementById('spotify-reopen').classList.add('visivel');
+    }
+    function reabrirSpotify() {
+      document.getElementById('spotify-float').classList.remove('minimizado');
+      document.getElementById('spotify-reopen').classList.remove('visivel');
     }
 
     /* ── INIT ──────────────────────────────────────── */
