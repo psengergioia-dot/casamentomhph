@@ -471,26 +471,31 @@
     /* ── DICAS ───────────────────────────────────────── */
     #dicas { background: #fff; }
     .dicas-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
       margin-top: 3rem;
     }
     .dica-card {
-      text-align: center;
-      padding: 2rem 1.5rem;
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      align-items: start;
+      gap: 0 1.5rem;
+      text-align: left;
+      padding: 1.8rem 2rem;
       border: 1px solid var(--border);
     }
     .dica-icon {
       font-size: 1.6rem;
-      margin-bottom: 1rem;
+      padding-top: 0.15rem;
+      text-align: center;
     }
     .dica-title {
       font-family: var(--serif);
       font-size: 1.1rem;
       font-weight: 400;
       color: var(--wine);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
     }
     .dica-text {
       font-family: var(--sans);
@@ -498,6 +503,80 @@
       font-size: 0.85rem;
       line-height: 1.7;
       color: var(--muted);
+    }
+    .dica-link {
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--wine);
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.2s;
+    }
+    .dica-link:hover { border-color: var(--wine); }
+
+    /* ── FAMÍLIA & PADRINHOS ─────────────────────────── */
+    #familia { background: var(--cream); }
+    .familia-grupos {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+    .familia-grupo-titulo {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .familia-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.5rem;
+    }
+    .familia-card {
+      text-align: center;
+    }
+    .familia-foto {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(202,103,142,0.12), rgba(255,159,197,0.2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.8rem;
+      overflow: hidden;
+      border: 2px solid var(--border);
+    }
+    .familia-foto img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .familia-foto-placeholder {
+      font-size: 2rem;
+      opacity: 0.4;
+    }
+    .familia-nome {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .familia-papel {
+      font-family: var(--sans);
+      font-weight: 200;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blush);
     }
 
     /* ── GALERIA ─────────────────────────────────────── */
@@ -1018,6 +1097,7 @@
     <ul class="nav-links">
       <li><a href="#historia">Nossa história</a></li>
       <li><a href="#evento">Evento</a></li>
+      <li><a href="#familia">Família</a></li>
       <li><a href="#dicas">Dicas</a></li>
       <li><a href="#galeria">Galeria</a></li>
       <li><a href="#presentes">Presentes</a></li>
@@ -1063,9 +1143,10 @@
       <h2 class="section-title reveal">Como tudo começou</h2>
       <div class="section-rule reveal"></div>
       <p class="historia-text reveal">
-        Dois caminhos que se encontraram e decidiram, a partir daí,
-        caminhar juntos para sempre. Aqui contamos, com carinho,
-        os momentos que nos trouxeram até este grande dia.
+        Tudo começou com um match, mas Deus já escutava aquelas orações há mais tempo do que imaginávamos.
+        No meio das incertezas, nos tornamos a certeza um do outro.
+        E agora, diante de Deus, escolhemos caminhar juntos para sempre
+        Aqui contamos, com carinho, os momentos que nos trouxeram até este grande dia.
       </p>
     </div>
 
@@ -1097,7 +1178,7 @@
           <div class="tl-top">
             <p class="tl-date">16 · 10 · 2021</p>
             <p class="tl-title">O pedido de namoro</p>
-            <p class="tl-desc">Depois de dois meses, brigadeiros como um match para a vida.</p>
+            <p class="tl-desc">Brigadeiros como um match para a vida.</p>
           </div>
           <div class="tl-dot-zone"><div class="tl-dot"></div></div>
           <div class="tl-bottom"></div>
@@ -1109,7 +1190,7 @@
           <div class="tl-bottom">
             <p class="tl-date">14 · 08 · 2025</p>
             <p class="tl-title">O pedido de casamento</p>
-            <p class="tl-desc">5km corridos no Ibirapuera e a pergunta mais importante até então.</p>
+            <p class="tl-desc">5km corridos no Parque do Ibirapuera e a pergunta mais importante até então.</p>
           </div>
         </div>
 
@@ -1164,6 +1245,90 @@
     </div>
   </section>
 
+  <!-- FAMÍLIA & PADRINHOS -->
+  <section id="familia">
+    <div class="container">
+      <p class="section-label reveal">Nosso lado</p>
+      <h2 class="section-title reveal">Família <em>&amp;</em> Padrinhos</h2>
+      <div class="section-rule reveal"></div>
+
+      <div class="familia-grupos">
+
+        <!-- PAIS -->
+        <div class="reveal">
+          <p class="familia-grupo-titulo">Pais</p>
+          <div class="familia-cards">
+            <div class="familia-card">
+              <div class="familia-foto"><div class="familia-foto-placeholder">👤</div></div>
+              <p class="familia-nome">A preencher</p>
+              <p class="familia-papel">Pai da noiva</p>
+            </div>
+            <div class="familia-card">
+              <div class="familia-foto"><div class="familia-foto-placeholder">👤</div></div>
+              <p class="familia-nome">A preencher</p>
+              <p class="familia-papel">Mãe da noiva</p>
+            </div>
+            <div class="familia-card">
+              <div class="familia-foto"><div class="familia-foto-placeholder">👤</div></div>
+              <p class="familia-nome">A preencher</p>
+              <p class="familia-papel">Pai do noivo</p>
+            </div>
+            <div class="familia-card">
+              <div class="familia-foto"><div class="familia-foto-placeholder">👤</div></div>
+              <p class="familia-nome">A preencher</p>
+              <p class="familia-papel">Mãe do noivo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PADRINHOS & MADRINHAS -->
+        <div class="reveal">
+          <p class="familia-grupo-titulo">Padrinhos &amp; Madrinhas</p>
+          <div class="familia-cards">
+            <div class="familia-card">
+              <div class="familia-foto"><div class="familia-foto-placeholder">👤</div></div>
+              <p class="familia-nome">A preencher</p>
+              <p class="familia-papel">Padrinho</p>
+            </div>
+            <div class="familia-card">
+              <div class="familia-foto"><div class="familia-foto-placeholder">👤</div></div>
+              <p class="familia-nome">A preencher</p>
+              <p class="familia-papel">Madrinha</p>
+            </div>
+            <div class="familia-card">
+              <div class="familia-foto"><div class="familia-foto-placeholder">👤</div></div>
+              <p class="familia-nome">A preencher</p>
+              <p class="familia-papel">Padrinho</p>
+            </div>
+            <div class="familia-card">
+              <div class="familia-foto"><div class="familia-foto-placeholder">👤</div></div>
+              <p class="familia-nome">A preencher</p>
+              <p class="familia-papel">Madrinha</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAMINHA & PAJEM -->
+        <div class="reveal">
+          <p class="familia-grupo-titulo">Daminha &amp; Pajem</p>
+          <div class="familia-cards" style="max-width:400px;margin:0 auto;">
+            <div class="familia-card">
+              <div class="familia-foto"><div class="familia-foto-placeholder">👧</div></div>
+              <p class="familia-nome">A preencher</p>
+              <p class="familia-papel">Daminha</p>
+            </div>
+            <div class="familia-card">
+              <div class="familia-foto"><div class="familia-foto-placeholder">👦</div></div>
+              <p class="familia-nome">A preencher</p>
+              <p class="familia-papel">Pajem</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- DICAS -->
   <section id="dicas">
     <div class="container">
@@ -1171,31 +1336,61 @@
       <h2 class="section-title reveal">Dicas <em>&amp;</em> Informações</h2>
       <div class="section-rule reveal"></div>
       <div class="dicas-grid">
+
         <div class="dica-card reveal">
           <div class="dica-icon">🌸</div>
-          <h3 class="dica-title">Dress code</h3>
-          <p class="dica-text">Em breve, mais informações aqui.</p>
+          <div>
+            <h3 class="dica-title">Dress code</h3>
+            <p class="dica-text">Para este dia tão especial, sugerimos <strong style="font-weight:400;color:var(--ink);">TRAJES EM ESTILO SOCIAL</strong>, priorizando elegância e conforto para que todos aproveitem ao máximo cada momento da celebração.</p>
+          </div>
         </div>
+
+        <div class="dica-card reveal">
+          <div class="dica-icon">💄</div>
+          <div>
+            <h3 class="dica-title">Cabelo &amp; Maquiagem</h3>
+            <p class="dica-text">Para as convidadas que desejam se preparar na cidade, indicamos a <strong style="font-weight:400;color:var(--ink);">Casa Alberti</strong> — referência em beleza em Taubaté.</p>
+            <a href="https://www.instagram.com/casa_alberti" class="dica-link" target="_blank" rel="noopener">@casa_alberti no Instagram →</a>
+          </div>
+        </div>
+
         <div class="dica-card reveal">
           <div class="dica-icon">🏨</div>
-          <h3 class="dica-title">Hospedagem</h3>
-          <p class="dica-text">Indicamos hotéis próximos ao local da festa. Em breve, mais informações aqui.</p>
+          <div>
+            <h3 class="dica-title">Hospedagem</h3>
+            <p class="dica-text">Indicamos hotéis próximos ao local da festa. Em breve, mais informações aqui.</p>
+          </div>
         </div>
+
         <div class="dica-card reveal">
           <div class="dica-icon">🚗</div>
-          <h3 class="dica-title">Como chegar</h3>
-          <p class="dica-text">
-            A cerimônia acontece em Tremembé e a recepção em Taubaté — cidades vizinhas no Vale do Paraíba.<br/><br/>
-            <strong style="font-weight:400;color:var(--ink);">De São Paulo:</strong> cerca de 140km pela Rodovia Presidente Dutra (Via Dutra). Aproximadamente 1h30 sem trânsito — quem vier no dia, se programe com antecedência.<br/><br/>
-            <strong style="font-weight:400;color:var(--ink);">De Cachoeira Paulista:</strong> cerca de 110km pela Rodovia Presidente Dutra, aproximadamente 1h10.<br/><br/>
-            Estacionamento disponível nos dois locais.
-          </p>
+          <div>
+            <h3 class="dica-title">Como chegar</h3>
+            <p class="dica-text">
+              A cerimônia acontece em Tremembé e a recepção em Taubaté — cidades vizinhas no Vale do Paraíba.<br/><br/>
+              <strong style="font-weight:400;color:var(--ink);">De São Paulo:</strong> cerca de 140km pela Via Dutra. Aproximadamente 1h30 sem trânsito — quem vier no dia, se programe com antecedência.<br/><br/>
+              <strong style="font-weight:400;color:var(--ink);">De Cachoeira Paulista:</strong> cerca de 110km pela Via Dutra, aproximadamente 1h10.<br/><br/>
+              Estacionamento disponível nos dois locais.
+            </p>
+          </div>
         </div>
+
         <div class="dica-card reveal">
           <div class="dica-icon">🍽️</div>
-          <h3 class="dica-title">Restaurantes</h3>
-          <p class="dica-text">Para quem vem de fora, em breve compartilharemos nossas sugestões favoritas na cidade.</p>
+          <div>
+            <h3 class="dica-title">Restaurantes</h3>
+            <p class="dica-text">Para quem vem de fora, duas sugestões nossas em Taubaté:<br/><br/>
+              <strong style="font-weight:400;color:var(--ink);">Peperone Pizzaria &amp; Restaurante</strong><br/>
+              R. XV de Novembro, 348 — Centro, Taubaté/SP<br/>
+              <a href="https://maps.app.goo.gl/7v9esMULTxxKbZpm7" class="dica-link" target="_blank" rel="noopener">Como chegar →</a>
+              <br/><br/>
+              <strong style="font-weight:400;color:var(--ink);">Vivá Gastronomia e Eventos</strong><br/>
+              Av. Cel. Francisco Gomes Vieira, 52 — Alto do Cristo, Taubaté/SP<br/>
+              <a href="https://maps.app.goo.gl/xpg3WvGfxRZaRUco8" class="dica-link" target="_blank" rel="noopener">Como chegar →</a>
+            </p>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -1265,7 +1460,7 @@
           </div>
           <div class="cotas-wrap"><div class="cotas-grid">
             <div class="cota-card">
-              <p class="cota-desc">Passeio romântico</p>
+              <p class="cota-desc">Jantar Especial</p>
               <p class="cota-valor">R$ 100</p>
               <button class="cota-btn" onclick="togglePix(this, '45564333802', 100, 'Lua de Mel')">Ver Pix</button>
               <div class="cota-pix">
@@ -1278,7 +1473,7 @@
               </div>
             </div>
             <div class="cota-card">
-              <p class="cota-desc">Jantar especial</p>
+              <p class="cota-desc">Passeio Romântico</p>
               <p class="cota-valor">R$ 200</p>
               <button class="cota-btn" onclick="togglePix(this, '45564333802', 200, 'Lua de Mel')">Ver Pix</button>
               <div class="cota-pix">
