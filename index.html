@@ -518,6 +518,53 @@
     }
     .dica-link:hover { border-color: var(--wine); }
 
+    .dica-subgrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 0.8rem;
+    }
+    .dica-subitem {
+      background: var(--cream);
+      padding: 1rem;
+      border: 1px solid var(--border);
+    }
+    .dica-subitem-nome {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .dica-subitem-end {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+    .dica-subitem-nota {
+      font-family: var(--sans);
+      font-weight: 200;
+      font-size: 0.72rem;
+      color: var(--blush);
+      font-style: italic;
+      margin-bottom: 0.4rem;
+    }
+    .dica-preco {
+      display: inline-block;
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 0.72rem;
+      color: var(--wine);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+    @media (max-width: 600px) {
+      .dica-subgrid { grid-template-columns: 1fr; }
+    }
+
     /* ── FAMÍLIA & PADRINHOS ─────────────────────────── */
     #familia { background: var(--cream); }
     .familia-grupos {
@@ -1358,7 +1405,30 @@
           <div class="dica-icon">🏨</div>
           <div>
             <h3 class="dica-title">Hospedagem</h3>
-            <p class="dica-text">Indicamos hotéis próximos ao local da festa. Em breve, mais informações aqui.</p>
+            <p class="dica-text" style="margin-bottom:0.8rem;">Algumas opções próximas ao Sítio Tangaroa:</p>
+            <div class="dica-subgrid">
+              <div class="dica-subitem">
+                <p class="dica-subitem-nome">Faro Hotel</p>
+                <p class="dica-preco">$$$ · 4 estrelas</p>
+                <p class="dica-subitem-end">Av. Assis Chateaubriand, 187<br/>Bel Recanto · Taubaté/SP</p>
+                <p class="dica-subitem-nota">Piscina, sauna, café da manhã incluso. Diárias a partir de ~R$300.</p>
+                <a href="https://maps.app.goo.gl/JGPZZmSaP8KDBHoE8" class="dica-link" target="_blank" rel="noopener">Como chegar →</a>
+              </div>
+              <div class="dica-subitem">
+                <p class="dica-subitem-nome">ibis Taubaté</p>
+                <p class="dica-preco">$$ · 3 estrelas</p>
+                <p class="dica-subitem-end">Av. Independência, 18<br/>Taubaté/SP</p>
+                <p class="dica-subitem-nota">Prático e econômico. Pet-friendly. Diárias a partir de ~R$180.</p>
+                <a href="https://maps.app.goo.gl/STw8MKbPoLFfahpXA" class="dica-link" target="_blank" rel="noopener">Como chegar →</a>
+              </div>
+              <div class="dica-subitem">
+                <p class="dica-subitem-nome">Carlton Plaza Baobá</p>
+                <p class="dica-preco">$$$ · 4 estrelas</p>
+                <p class="dica-subitem-end">Av. Independência, 3249<br/>Taubaté/SP</p>
+                <p class="dica-subitem-nota">Piscina, restaurante, café da manhã incluso. Diárias a partir de ~R$280.</p>
+                <a href="https://maps.app.goo.gl/XMcQy4bLS9mQEKTE9" class="dica-link" target="_blank" rel="noopener">Como chegar →</a>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1368,8 +1438,8 @@
             <h3 class="dica-title">Como chegar</h3>
             <p class="dica-text">
               A cerimônia acontece em Tremembé e a recepção em Taubaté — cidades vizinhas no Vale do Paraíba.<br/><br/>
-              <strong style="font-weight:400;color:var(--ink);">De São Paulo:</strong> cerca de 140km pela Via Dutra. Aproximadamente 1h30 sem trânsito — quem vier no dia, se programe com antecedência.<br/><br/>
-              <strong style="font-weight:400;color:var(--ink);">De Cachoeira Paulista:</strong> cerca de 110km pela Via Dutra, aproximadamente 1h10.<br/><br/>
+              <strong style="font-weight:400;color:var(--ink);">De São Paulo:</strong> cerca de 140km pela Via Dutra. Aproximadamente 2h00 sem trânsito — quem vier no dia, se programe com antecedência.<br/><br/>
+              <strong style="font-weight:400;color:var(--ink);">De Cachoeira Paulista:</strong> cerca de 110km pela Via Dutra, aproximadamente 1h20.<br/><br/>
               Estacionamento disponível nos dois locais.
             </p>
           </div>
@@ -1379,15 +1449,30 @@
           <div class="dica-icon">🍽️</div>
           <div>
             <h3 class="dica-title">Restaurantes</h3>
-            <p class="dica-text">Para quem vem de fora, duas sugestões nossas em Taubaté:<br/><br/>
-              <strong style="font-weight:400;color:var(--ink);">Peperone Pizzaria &amp; Restaurante</strong><br/>
-              R. XV de Novembro, 348 — Centro, Taubaté/SP<br/>
-              <a href="https://maps.app.goo.gl/7v9esMULTxxKbZpm7" class="dica-link" target="_blank" rel="noopener">Como chegar →</a>
-              <br/><br/>
-              <strong style="font-weight:400;color:var(--ink);">Vivá Gastronomia e Eventos</strong><br/>
-              Av. Cel. Francisco Gomes Vieira, 52 — Alto do Cristo, Taubaté/SP<br/>
-              <a href="https://maps.app.goo.gl/xpg3WvGfxRZaRUco8" class="dica-link" target="_blank" rel="noopener">Como chegar →</a>
-            </p>
+            <p class="dica-text" style="margin-bottom:0.8rem;">Para quem vem de fora, nossas sugestões em Taubaté:</p>
+            <div class="dica-subgrid">
+              <div class="dica-subitem">
+                <p class="dica-subitem-nome">Peperone</p>
+                <p class="dica-subitem-end">R. XV de Novembro, 348<br/>Centro · Taubaté/SP</p>
+                <a href="https://maps.app.goo.gl/7v9esMULTxxKbZpm7" class="dica-link" target="_blank" rel="noopener">Como chegar →</a>
+              </div>
+              <div class="dica-subitem">
+                <p class="dica-subitem-nome">Vivá Gastronomia</p>
+                <p class="dica-subitem-end">Av. Cel. Francisco Gomes Vieira, 52<br/>Alto do Cristo · Taubaté/SP</p>
+                <a href="https://maps.app.goo.gl/xpg3WvGfxRZaRUco8" class="dica-link" target="_blank" rel="noopener">Como chegar →</a>
+              </div>
+              <div class="dica-subitem">
+                <p class="dica-subitem-nome">Santo Piatto</p>
+                <p class="dica-subitem-end">R. Irmã Margarida, 64<br/>Centro · Taubaté/SP</p>
+                <a href="https://maps.app.goo.gl/vM1SGuNMQPVGZpza6" class="dica-link" target="_blank" rel="noopener">Como chegar →</a>
+              </div>
+              <div class="dica-subitem">
+                <p class="dica-subitem-nome">Alentejano</p>
+                <p class="dica-subitem-end">R. Dona Chiquinha de Mattos, 224<br/>Centro · Taubaté/SP</p>
+                <p class="dica-subitem-nota">Há outras unidades na cidade.</p>
+                <a href="https://maps.app.goo.gl/gfiFHEZFxKo9HR6q6" class="dica-link" target="_blank" rel="noopener">Como chegar →</a>
+              </div>
+            </div>
           </div>
         </div>
 
