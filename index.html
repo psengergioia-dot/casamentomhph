@@ -524,6 +524,9 @@
       gap: 1rem;
       margin-top: 0.8rem;
     }
+    .dica-subgrid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
     .dica-subitem {
       background: var(--cream);
       padding: 1rem;
@@ -584,8 +587,9 @@
     }
     .familia-cards {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(160px, 200px));
       gap: 1.5rem;
+      justify-content: center;
     }
     .familia-card {
       text-align: center;
@@ -1192,7 +1196,7 @@
       <p class="historia-text reveal">
         Tudo começou com um match, mas Deus já escutava aquelas orações há mais tempo do que imaginávamos.
         No meio das incertezas, nos tornamos a certeza um do outro.
-        E agora, diante de Deus, escolhemos caminhar juntos para sempre
+        E agora, diante de Deus, escolhemos caminhar juntos para sempre.
         Aqui contamos, com carinho, os momentos que nos trouxeram até este grande dia.
       </p>
     </div>
@@ -1406,7 +1410,7 @@
           <div>
             <h3 class="dica-title">Hospedagem</h3>
             <p class="dica-text" style="margin-bottom:0.8rem;">Algumas opções próximas ao Sítio Tangaroa:</p>
-            <div class="dica-subgrid">
+            <div class="dica-subgrid dica-subgrid-3">
               <div class="dica-subitem">
                 <p class="dica-subitem-nome">Faro Hotel</p>
                 <p class="dica-preco">$$$ · 4 estrelas</p>
