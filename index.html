@@ -1089,6 +1089,109 @@
       .cotas-grid { grid-template-columns: 1fr; }
     }
 
+    /* ── MURAL DE MENSAGENS ──────────────────────────── */
+    #mural { background: var(--cream); }
+
+    .mural-form {
+      max-width: 580px;
+      margin: 0 auto 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .mural-input, .mural-textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+    }
+    .mural-input:focus, .mural-textarea:focus {
+      border-color: var(--blush);
+    }
+    .mural-textarea { min-height: 120px; }
+    .mural-submit {
+      align-self: flex-end;
+      padding: 0.7rem 2rem;
+      border: 1px solid var(--wine);
+      background: none;
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--wine);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .mural-submit:hover { background: var(--wine); color: #fff; }
+    .mural-submit:disabled { opacity: 0.5; cursor: default; }
+
+    .mural-feedback {
+      text-align: center;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--blush);
+      min-height: 1.4rem;
+    }
+
+    .mural-mensagens {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .mural-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 1.5rem 1.8rem;
+      position: relative;
+    }
+    .mural-card::before {
+      content: '"';
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      color: var(--petal);
+      line-height: 1;
+      position: absolute;
+      top: 0.5rem;
+      left: 1rem;
+      opacity: 0.6;
+    }
+    .mural-card-texto {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--ink);
+      padding-top: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .mural-card-nome {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blush);
+    }
+    .mural-vazio {
+      text-align: center;
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.95rem;
+      grid-column: 1 / -1;
+      padding: 2rem 0;
+    }
+
     /* ── FOOTER ──────────────────────────────────────── */
     footer {
       background: var(--ink);
@@ -1153,6 +1256,7 @@
       <li><a href="#familia">Família</a></li>
       <li><a href="#dicas">Dicas</a></li>
       <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#mural">Mensagens</a></li>
       <li><a href="#presentes">Presentes</a></li>
 
     </ul>
@@ -1743,6 +1847,37 @@
     </div>
   </section>
 
+  <!-- MURAL DE MENSAGENS -->
+  <section id="mural">
+    <div class="container">
+      <p class="section-label reveal">Deixe sua mensagem</p>
+      <h2 class="section-title reveal">Mural <em>de mensagens</em></h2>
+      <div class="section-rule reveal"></div>
+
+      <form class="mural-form reveal" id="mural-form" onsubmit="enviarMensagem(event)">
+        <input
+          class="mural-input"
+          id="mural-nome"
+          type="text"
+          placeholder="Seu nome"
+          maxlength="80"
+          required />
+        <textarea
+          class="mural-textarea"
+          id="mural-texto"
+          placeholder="Escreva sua mensagem para os noivos..."
+          maxlength="600"
+          required></textarea>
+        <button class="mural-submit" type="submit" id="mural-btn">Enviar mensagem</button>
+      </form>
+      <p class="mural-feedback" id="mural-feedback"></p>
+
+      <div class="mural-mensagens" id="mural-mensagens">
+        <!-- mensagens carregadas via Supabase -->
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <img src="monograma.svg" alt="MHPH" class="footer-mono" />
@@ -2014,7 +2149,77 @@
       document.getElementById('spotify-reopen').classList.remove('visivel');
     }
 
+    /* ── MURAL DE MENSAGENS (Supabase) ─────────────── */
+    const SB_URL  = 'https://qxrgpbsamffttvqrngwh.supabase.co';
+    const SB_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF4cmdwYnNhbWZmdHR2cXJuZ3doIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk0MjY4MzEsImV4cCI6MjEwNTAwMjgzMX0.ExfPoufgb7m9JUV_VF0SF6j19FdDvGOJY6g3kNkiL-s';
+    const SB_HDRS = {
+      'Content-Type': 'application/json',
+      'apikey': SB_KEY,
+      'Authorization': 'Bearer ' + SB_KEY
+    };
+
+    async function carregarMensagens() {
+      const el = document.getElementById('mural-mensagens');
+      try {
+        const r = await fetch(
+          `${SB_URL}/rest/v1/mensagens?aprovado=eq.true&order=created_at.desc`,
+          { headers: SB_HDRS }
+        );
+        const dados = await r.json();
+        if (!dados.length) {
+          el.innerHTML = '<p class="mural-vazio">Seja o primeiro a deixar uma mensagem. 🌸</p>';
+          return;
+        }
+        el.innerHTML = dados.map(m => `
+          <div class="mural-card">
+            <p class="mural-card-texto">${escapeHtml(m.mensagem)}</p>
+            <p class="mural-card-nome">— ${escapeHtml(m.nome)}</p>
+          </div>`).join('');
+      } catch {
+        el.innerHTML = '<p class="mural-vazio">Não foi possível carregar as mensagens.</p>';
+      }
+    }
+
+    async function enviarMensagem(e) {
+      e.preventDefault();
+      const btn      = document.getElementById('mural-btn');
+      const feedback = document.getElementById('mural-feedback');
+      const nome     = document.getElementById('mural-nome').value.trim();
+      const mensagem = document.getElementById('mural-texto').value.trim();
+      if (!nome || !mensagem) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+      feedback.textContent = '';
+
+      try {
+        const r = await fetch(`${SB_URL}/rest/v1/mensagens`, {
+          method: 'POST',
+          headers: { ...SB_HDRS, 'Prefer': 'return=minimal' },
+          body: JSON.stringify({ nome, mensagem, aprovado: false })
+        });
+        if (!r.ok) throw new Error();
+        document.getElementById('mural-form').reset();
+        feedback.textContent = 'Mensagem enviada! Ela aparecerá aqui em breve. 🌸';
+      } catch {
+        feedback.textContent = 'Erro ao enviar. Tente novamente.';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Enviar mensagem';
+      }
+    }
+
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/\n/g,'<br/>');
+    }
+
     /* ── INIT ──────────────────────────────────────── */
+    carregarMensagens();
     carregarFotos();
     observeReveal();
   </script>
