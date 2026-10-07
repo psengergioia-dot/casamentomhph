@@ -565,6 +565,43 @@
       .dica-subgrid { grid-template-columns: 1fr; }
     }
 
+    /* ── CONFIRMAÇÃO DE PRESENÇA ────────────────────── */
+    #presenca { background: var(--cream); }
+    .presenca-content {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .presenca-text {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+    .presenca-text strong {
+      font-weight: 400;
+      color: var(--ink);
+    }
+    .presenca-btn {
+      display: inline-block;
+      padding: 0.85rem 2.8rem;
+      border: 1px solid var(--wine);
+      background: var(--wine);
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #fff;
+      transition: background 0.2s, color 0.2s;
+    }
+    .presenca-btn:hover {
+      background: transparent;
+      color: var(--wine);
+    }
+
     /* ── GALERIA ─────────────────────────────────────── */
     #galeria { background: var(--cream); }
 
@@ -655,7 +692,7 @@
       margin-top: 6px;
     }
     .thumb {
-      aspect-ratio: 4/3;
+      aspect-ratio: 5/2;
       overflow: hidden;
       cursor: pointer;
       position: relative;
@@ -1181,6 +1218,7 @@
     <ul class="nav-links">
       <li><a href="#historia">Nossa história</a></li>
       <li><a href="#evento">Evento</a></li>
+      <li><a href="#presenca">Presença</a></li>
       <li><a href="#dicas">Dicas</a></li>
       <li><a href="#galeria">Galeria</a></li>
       <li><a href="#mural">Mensagens</a></li>
@@ -1329,6 +1367,24 @@
     </div>
   </section>
 
+  <!-- CONFIRMAÇÃO DE PRESENÇA -->
+  <section id="presenca">
+    <div class="container">
+      <p class="section-label reveal">Para os convidados</p>
+      <h2 class="section-title reveal">Confirmação <em>de Presença</em></h2>
+      <div class="section-rule reveal"></div>
+      <div class="presenca-content reveal">
+        <p class="presenca-text">
+          Pedimos que confirmem a presença até <strong>05 de junho de 2027</strong>.<br/>
+          Use o link abaixo para confirmar pelo sistema da nossa assessoria:
+        </p>
+        <a href="https://lacavaeventos.com.br/mheph" class="presenca-btn" target="_blank" rel="noopener">
+          Confirmar presença →
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- DICAS -->
   <section id="dicas">
     <div class="container">
@@ -1341,7 +1397,8 @@
           <div class="dica-icon">🌸</div>
           <div>
             <h3 class="dica-title">Dress code</h3>
-            <p class="dica-text">Para este dia tão especial, sugerimos <strong style="font-weight:400;color:var(--ink);">TRAJES EM ESTILO SOCIAL</strong>, priorizando elegância e conforto para que todos aproveitem ao máximo cada momento da celebração.<br/><br/>Pedimos, com carinho, que <strong style="font-weight:400;color:var(--ink);">EVITEM</strong> tons como rosa claro, pois essa paleta será dedicada às madrinhas.</p>
+            <p class="dica-text">Para este dia tão especial, sugerimos <strong style="font-weight:400;color:var(--ink);">TRAJES EM ESTILO SOCIAL</strong>, priorizando elegância e conforto para que todos aproveitem ao máximo cada momento da celebração.</p>
+            <p class="dica-text">Pedimos, com carinho, que EVITEM tons como rosa claro, pois essa paleta será dedicada às madrinhas.</p>
           </div>
         </div>
 
@@ -1426,15 +1483,6 @@
                 <a href="https://maps.app.goo.gl/gfiFHEZFxKo9HR6q6" class="dica-link" target="_blank" rel="noopener">Como chegar →</a>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div class="dica-card reveal">
-          <div class="dica-icon">✅</div>
-          <div>
-            <h3 class="dica-title">Confirmação de Presença</h3>
-            <p class="dica-text">Favor confirmar presença até o dia <strong style="font-weight:400;color:var(--ink);">05.06.2027</strong> clicando no link abaixo e utilizando a senha que receberam junto com o convite.<br/><br/>
-            <a href="https://www.lacavaeventos.com.br/mheph" class="dica-link" target="_blank" rel="noopener">www.lacavaeventos.com.br/mheph →</a></p>
           </div>
         </div>
 
